@@ -1,0 +1,32 @@
+ion-menu-button {
+    color: var(--ion-color-primary);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+  }
+ion-title {
+    margin-left: 10px; 
+    
+    font-weight: bold;
+    color: rgb(2, 2, 2);
+  }
+
+  ion-select{
+  color: black;
+}
+ion-item{
+  color: black;
+ 
+}
+.continue{
+  --background:rgb(115, 255, 0);   
+  color: black;
+  margin-top: 20px;
+  border-radius: 15px;
+}
+.close{
+  padding: 10px;
+}  

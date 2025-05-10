@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <div >
+    <img src="../../../assets/img/smp-logo-rect.png" class="main-div">
+      <ion-label>Account Login</ion-label>
+
+    <div class="facebook">
+      <img src="../../../assets/img/facebook.png">  
+    </div>
+    <ion-text class="text">---------OR--------</ion-text> 
+    <form [formGroup]="loginForm">
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="username" name="username" fill="outline" placeholder="Username/Email*" color="danger"></ion-input>
+      </ion-item><br>
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="password" name="password" fill="outline" placeholder="Password*" type="password"></ion-input>
+      </ion-item><br>
+      
+    </form>
+    <ion-button (click)="login()">
+      Login
+    </ion-button>
+
+    <br>
+    <ion-text>Don't have an account yet?</ion-text><br>
+      <ion-label class="label">Tap here to create new account</ion-label>
+    
+  </div>
+</ion-content>

@@ -1,0 +1,18 @@
+.content{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    font-size: 18;
+    font-weight: 700;
+}
+ion-toggle{
+    --track-background :#d8d7d6;
+    --track-background-checked :rgba(80, 87, 220, 0.655);
+
+    --handle-background: #d8d7d6;
+    --handle-background-checked: #e6d23c;
+
+}
+ion-item{
+    font-size: 18;
+    font-weight: 700;
+}

@@ -1,0 +1,191 @@
+
+<ion-content>
+  <div class="img">
+    <div class="header-container">
+      <ion-buttons slot="start">
+        <ion-menu-button color="light"></ion-menu-button>
+      </ion-buttons>
+      <ion-label class="title"> <img src="../../assets/img/smp-logo-rect-white.png" class="img"> <span class="subtitle"> The official money transfer comparison service for the pacific Islands.</span></ion-label><br>
+      
+    </div>
+
+    <ion-grid>
+      <ion-row class="ion-justify-content-around">
+        <ion-text><Strong>From </Strong></ion-text>
+        <ion-col size="4" class="col">
+          <img [src]="countryImg" class="main-img">
+          <p>{{ countryNameFrom }}</p>
+        </ion-col>
+
+        <ion-text>To</ion-text>
+        <ion-col size="4" class="col">
+          <img [src]="countryFlag" class="main-img">
+          <p>{{ countryNameTo }}</p>
+        </ion-col>
+      </ion-row>
+   </ion-grid>
+
+    <!-- select amount  -->
+    <ion-select>
+      <!-- <ion-select-option>200</ion-select-option> -->
+      <ion-select-option *ngFor="let amt of amount" [value]="amt">{{amt}}</ion-select-option>
+      <!-- <ion-select-option *ngFor="let amt of amount" [value]="amt">{{amt}}</ion-select-option> -->
+    </ion-select>
+  
+    <ion-button class="filter" shape="round"size="small" (click)="moreFilters()">More Filters</ion-button>
+   </div>
+
+    <div>
+      <ion-grid class="no-padding">
+        <ion-row class="ion-justify-content-end no-padding">
+          <ion-col size="3" class="no-padding no-width"> 
+            <ion-button 
+              class="btn" 
+              size="small" 
+              [class.highlighted]="isCheapestSelected" 
+              (click)="selectCheapest()">Cheapest
+            </ion-button>
+          </ion-col>
+
+          <ion-col size="3" class="no-padding no-width"> 
+            <ion-button 
+              class="btn" 
+              size="small" 
+              [class.highlighted]="!isCheapestSelected" 
+              (click)="selectFastest()">Fastest
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  <div *ngIf="isCheapestSelected" id="cheapest">
+
+    <!-- <img src="../../assets/images/Group.png" class="card-img">
+    <img src="../../assets/images/Vector.png" class="card-img"> -->
+    <!-- <ion-card>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label> {{received || '....'}}<br> <span> {{currency || '....'}}</span></ion-label>
+         <img src="../../assets/img/Vector-green.png" class="card-img">
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Under 1 hours | Account to account <span>Transfer Details</span></ion-label>
+          <ion-label>
+            <ion-button class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+     -->/
+
+     <ion-card *ngFor="let res of results">
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>Received:</strong> {{ res.received }} <br>
+            <strong>Currency:</strong> {{ res.currency }}
+          </ion-label>
+          <ion-label>
+            <img [src]="'https://test.sendmoneypacific.org/wp-content/uploads/logos/' + res.operatorsImage " />
+          </ion-label>
+        
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            Under 1 hour | Account to account <span>Transfer Details</span>
+          </ion-label>
+          <ion-label>
+            <ion-button class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <!-- <ion-card>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
+          <img src="../../assets/img/Vector-green.png" class="card-img">
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Under 1 hours | online to account<span>Transfer Details</span></ion-label>
+          <ion-label>
+            <ion-button  class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card> -->
+
+    <!-- <ion-card>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
+          <img src="../../assets/img/Vector-green.png" class="card-img">
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>1-3 weekdays| Credit card to cash <span>Transfer Details</span></ion-label>
+          <ion-label>
+            <ion-button  class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card> -->
+
+  </div>
+
+<!-- fastest -->
+
+  <div *ngIf="!isCheapestSelected" id="fastest">
+    <ion-card>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>495.00NZD <span>total Received (NZD)</span></ion-label>
+          <ion-label class="card-img">img</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Within Minutes| Online to mobile <span>Transfer Details</span></ion-label>
+          <ion-label>
+            <ion-button  class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    
+    <ion-card>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
+          <ion-label class="card-img">img</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>Under 1 hours | online to account<span>Transfer Details</span></ion-label>
+          <ion-label>
+            <ion-button class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
+          <ion-label class="card-img">img</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>1-3 weekdays| Credit card to cash <span>Transfer Details</span></ion-label>
+          <ion-label>
+            <ion-button class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+    
+
+<ion-button class="more-match" expand="full" >
+  <ion-label>More Matches</ion-label>
+</ion-button>
+    
+</ion-content>

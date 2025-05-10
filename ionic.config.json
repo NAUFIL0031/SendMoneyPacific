@@ -1,0 +1,10 @@
+{
+  "name": "sendmoneypacific",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}

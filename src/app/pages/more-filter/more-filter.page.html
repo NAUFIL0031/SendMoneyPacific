@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Filters</ion-title>
+    <ion-icon class="close" name="close" slot="end" size="large" (click)="onClose()" color="dark"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+ <ion-list>
+  <ion-item>
+    <ion-select placeholder="Transfer Speed" interface="popover" labelPlacement="stacked">
+      <ion-select-option value="instant" slot="middle">Instant</ion-select-option>
+      <ion-select-option value="under">Under 1 Hour</ion-select-option>
+      <ion-select-option value="sameDay">Same Day</ion-select-option>
+      <ion-select-option value="1-3days">1-3 days</ion-select-option>
+      <ion-select-option value="3+ day">3+ days</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select placeholder="Send Method" interface="popover" labelPlacement="stacked">
+      <ion-select-option value="Cash" slot="middle">Cash</ion-select-option>
+      <ion-select-option value="Account">Account</ion-select-option>
+      <ion-select-option value="Online">Online</ion-select-option>
+      <ion-select-option value="Mobile">Mobile</ion-select-option>
+      <ion-select-option value="Prepaid">Prepaid</ion-select-option>
+      <ion-select-option value="door">Door (delivery)</ion-select-option>
+      <ion-select-option value="card">Credit Card</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select placeholder="Recive Method" interface="popover" labelPlacement="stacked">
+      <ion-select-option value="Cash" slot="middle">Cash</ion-select-option>
+      <ion-select-option value="Account">Account</ion-select-option>
+      <ion-select-option value="Online">Online</ion-select-option>
+      <ion-select-option value="Mobile">Mobile</ion-select-option>
+      <ion-select-option value="Prepaid">Prepaid</ion-select-option>
+      <ion-select-option value="door">Door (delivery)</ion-select-option>
+      <ion-select-option value="card">Credit Card</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select placeholder="Operator Type" interface="popover" labelPlacement="stacked">
+      <ion-select-option value="bank" slot="middle">Bank</ion-select-option>
+      <ion-select-option value="mto">MTO</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select placeholder="Operator Coverage" interface="popover" labelPlacement="stacked">
+      <ion-select-option value="main">Main City</ion-select-option>
+      <ion-select-option value="town">Major Cities / town</ion-select-option>
+      <ion-select-option value="Nationwide">Nationwide</ion-select-option>
+      <ion-select-option value="Rural">Rural</ion-select-option>
+      <ion-select-option value="Urban">Urban</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  
+ </ion-list>
+
+  <ion-button class="continue" expand="full">
+    <ion-label>Continue</ion-label>
+  </ion-button>
+</ion-content>

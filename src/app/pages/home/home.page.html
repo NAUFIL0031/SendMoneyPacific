@@ -1,0 +1,84 @@
+
+<ion-content>
+  <div class="img">
+    <div class="header-container">
+      <ion-buttons slot="start">
+        <ion-menu-button color="light"></ion-menu-button>
+      </ion-buttons>
+      <ion-label class="title"> SendMoneyPacific <span class="subtitle"> The official money transfer comparison service for the pacific Islands.</span></ion-label><br>
+    </div>
+
+    <!-- source country  -->
+     
+    <ion-grid>
+      <ion-row class="ion-justify-content-around" style="background-color: aliceblue;">
+ 
+         <!-- conutry Aus -->
+          
+        <ion-col size="3" class="main-img"
+          (click)="selectCountry('Australia','Australia', './assets/Country/au.svg')"
+          [ngClass]="{
+            'active': selectedSenderCode === 'au',
+            'inactive': selectedSenderCode && selectedSenderCode !== 'au'
+          }">
+            <img src="./assets/Country/au.svg">
+            <ion-text>Australia</ion-text>
+        </ion-col>
+
+         <!-- conutry Nz  -->
+
+        <ion-col size="3" class="main-img"
+          (click)="selectCountry('New Zealand','New Zealand', './assets/Country/nz.svg')"
+          [ngClass]="{
+            'active': selectedSenderCode === 'nz',
+            'inactive': selectedSenderCode && selectedSenderCode !== 'nz'
+          }">
+            <img src="./assets/Country/nz.svg">
+          <ion-text>New Zealand</ion-text>
+        </ion-col>
+
+
+      </ion-row>
+    </ion-grid>
+ 
+    <!-- destination country  -->
+
+    <div class="contry">
+
+      <ion-grid class="content" >
+
+        <ion-label class="content-label">Select receiver country</ion-label>
+
+        <ion-row>
+          <ion-col size="3" *ngFor="let dest of destination"
+             class="destination"
+              (click)="selectCountry(dest.code, dest.title, getImageUrl(dest.flag))">
+              <img [src]="getImageUrl(dest.flag)" alt="{{ dest.title }}" class="flags" />
+              <label class="Name"><span>{{ dest.title }}</span></label>
+          </ion-col>
+        </ion-row>
+
+       
+        
+        <ion-button class="last-btn" (click)="getresult()">
+          <ion-label>Continue</ion-label>
+        </ion-button>
+
+        <ion-label *ngFor="let opt of operators">
+          <img [src]="'https://test.sendmoneypacific.org/wp-content/uploads/logos/' + opt.image" />
+        </ion-label>
+        <ion-label class="last-label">SendMoneyPacific is supported by</ion-label>
+
+        <ion-row>
+          <ion-col><img src="../../../assets/img/Ausaid.png" class="support"></ion-col>
+          <ion-col offset-md="2"><img src="../../../assets/img/nztrade.png" class="support"></ion-col>
+          <ion-col offset-md="2"><img src="../../../assets/img/world-bank.png" class="support"></ion-col>
+          <ion-col offset-md="2"><img src="../../../assets/img/culturalpluse.png" class="support"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div> 
+</ion-content>   
+
+
+
