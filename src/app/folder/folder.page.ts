@@ -91,10 +91,13 @@ export class FolderPage implements OnInit {
 getCountryImage() {
   
   // Sender country (from)
-  const cData = localStorage.getItem('countryCode');
+  // const cData = localStorage.getItem('countryCode');
+  const cData = localStorage.getItem('selectedSenderCode');
+  
   this.countryNameFrom ='';
   this.countryImg = '';
   console.log('Sender country :',cData);
+  console.log('countryFrom country :',this.countryNameFrom);
 
   if (cData === 'au') {
     this.countryImg = './assets/Country/au.svg';
@@ -156,9 +159,11 @@ getresult() {
   }
 
   const params = {
-    country_from: localStorage.getItem('countryCode') || '', 
+    // country_from: localStorage.getItem('countryCode') || '', 
+    country_from: localStorage.getItem('selectedCountryCode') || '', 
     country_to: localStorage.getItem('subcontryCode') || '', // destination country
     amount: this.selectedAmount,
+    // amount: Amount,
   };
 
   this.results = [];
@@ -173,14 +178,14 @@ getresult() {
         const initialData = JSON.parse(localStorage.getItem('initialData') || '[]')
         console.log(`API result for ${this.selectedAmount}:`, data);
 
-        // this.operators.forEach((item: any) => {
-        //   const optData = this.operators[item.id] || {};
-        //   console.log("newOptData :",optData);
-        // this.idOptData = optData.id;
-        //   console.log("idOptData :",this.idOptData);
-        // })
        
-  
+      //  this.operators.forEach((item: any) => {
+      //     const optData = this.operators[item.id] || {};
+      //     console.log("newOptData :",optData);
+      //   this.idOptData = optData.id;
+      //     console.log("idOptData :",this.idOptData);
+      //   })
+
         data.forEach((item: any) => {
           this.results.push({
             amount: this.selectedAmount,
