@@ -66,8 +66,7 @@ export class HomePage implements OnInit {
 
   selectCountry(countryCode: string, title: string, flagUrl: string) {
     if (countryCode === 'au' || countryCode === 'nz') {
-      this.selectedSenderCode = countryCode;
-      localStorage.setItem('countryCode', this.selectedSenderCode);
+      this.selectedSenderCode = countryCode;  
       localStorage.setItem('countryCode',countryCode );
       localStorage.setItem('SelectedSenderCode',countryCode );
       
@@ -75,18 +74,18 @@ export class HomePage implements OnInit {
     }
   //  console.log("abcCountry : ",countryCode);
 
-    //set reciver country 
+    //reciver country 
 
     localStorage.setItem('selectedCountryCode', countryCode);
     localStorage.setItem('selectedCountryTitle', title);
-    localStorage.setItem('selectedCountryName', title);
+    localStorage.setItem('selectedCountryName', title); //
 
     const selectedCountryTitle = localStorage.getItem('selectedCountryTitle')
-    console.log('selectedCountryTitle : ', title);
-    console.log('selectedCountryTitle : ', selectedCountryTitle);//
+    // console.log('selectedCountryTitle : ', title); //SAME 
+    console.log('selected Country: ', selectedCountryTitle);//
     localStorage.setItem('selectedCountryFlag', flagUrl);
  
-    console.log('Selected Country Code:', countryCode);
+    // console.log('Selected Country Code:', countryCode);
     console.log('Selected Country Title:', title);
 
 
@@ -116,14 +115,14 @@ export class HomePage implements OnInit {
           this.operators = data.operators;
           console.log('operators:',data.operators);
 //
-          data.foreach((item:any) => {
-            this.operators.push({
-              operators : item.operators,
-          });
+          // data.foreach((item:any) => {
+          //   this.operators.push({
+          //     operators : item.operators,
+          // });
 
-          console.log('Opearator result : ',data.result) //show result
-        });
-//       
+//           console.log('Opearator result : ',data.result) //show result
+//         });
+// //       
           
           this.router.navigate(['/folder/inbox'], {
             queryParams: {

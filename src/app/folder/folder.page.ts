@@ -68,7 +68,8 @@ export class FolderPage implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       
-      this.country_from = localStorage.getItem('selectedSenderCode') ||'';
+      // this.country_from = localStorage.getItem('selectedSenderCode') ||'';
+      this.country_from = localStorage.getItem('selectCountryCode') ||'';
       this.country_to = localStorage.getItem('subCountryCode') || '';
 
       this.countryCode = params['countryCode'];
@@ -91,26 +92,29 @@ export class FolderPage implements OnInit {
 getCountryImage() {
   
   // Sender country (from)
-  // const cData = localStorage.getItem('countryCode');
-  const cData = localStorage.getItem('selectedSenderCode');
+  const cData = localStorage.getItem('countryCode') || '';
+  // console.log("new country:",cData)
+  // const cData = localStorage.getItem('selectedSenderCode');
   
-  this.countryNameFrom ='';
+  this.countryNameFrom = '';
   this.countryImg = '';
   console.log('Sender country :',cData);
-  console.log('countryFrom country :',this.countryNameFrom);
-
-  if (cData === 'au') {
-    this.countryImg = './assets/Country/au.svg';
-    this.countryNameFrom = 'Australia';
-  } 
-  else if (cData === 'nz') {
-    this.countryImg = './assets/Country/nz.svg';
-    this.countryNameFrom = 'New Zealand';
-  } 
+ 
+  // console.log('Recevier Country :',this.countryCode);
+  
+if (cData === 'au') {
+  this.countryImg = './assets/Country/au.svg';
+  this.countryNameFrom = 'Australia';
+} else if (cData === 'nz') {
+  this.countryImg = './assets/Country/nz.svg';
+  this.countryNameFrom = 'New Zealand';
+}
 
   // Receiver country (to)
   this.countryCode = localStorage.getItem('selectedCountryCode') || '';
+  console.log("sender country: ",this.countryNameFrom)
   this.countryNameTo = localStorage.getItem('selectedCountryName') || '';
+  console.log("receicer country : ",this.countryNameTo)
   this.countryFlag = localStorage.getItem('selectedCountryFlag') || '';
 
   console.log('Receiver Country:', this.countryNameTo);
@@ -127,7 +131,7 @@ getCountryImage() {
   
 //access data
 amount: number[] = [200, 500];
-selectedAmount: number[]=[];
+selectedAmount: number[] = [];
 results: any = [];
 catId:any;
 id:any ;
@@ -153,17 +157,12 @@ getresult() {
 
   cordova.plugin.http.setDataSerializer('json');
 
-  if (!this.amount) {
-    console.warn("No amount selected.");
-    return;
-  }
-
   const params = {
     // country_from: localStorage.getItem('countryCode') || '', 
-    country_from: localStorage.getItem('selectedCountryCode') || '', 
+    country_from: localStorage.getItem('selectedSenderCode') || '', 
     country_to: localStorage.getItem('subcontryCode') || '', // destination country
     amount: this.selectedAmount,
-    // amount: Amount,
+    // amount: this.amount,
   };
 
   this.results = [];
@@ -176,16 +175,16 @@ getresult() {
       try {
         const data = JSON.parse(response.data);
         const initialData = JSON.parse(localStorage.getItem('initialData') || '[]')
-        console.log(`API result for ${this.selectedAmount}:`, data);
+        console.log(`API result for ${this.selectedAmount}:`,data); //data
 
-       
+       //
       //  this.operators.forEach((item: any) => {
       //     const optData = this.operators[item.id] || {};
       //     console.log("newOptData :",optData);
       //   this.idOptData = optData.id;
       //     console.log("idOptData :",this.idOptData);
       //   })
-
+//
         data.forEach((item: any) => {
           this.results.push({
             amount: this.selectedAmount,
@@ -200,7 +199,7 @@ getresult() {
           });
        
 
-          console.log("Final Result:",this.results);
+          // console.log("Final Result:",this.results);
           // this.operators.forEach((item: any) => {
           //   const optData = this.operators[item.id] || {};
           //   console.log("newOptData :",optData);
@@ -211,7 +210,7 @@ getresult() {
         });
         
         
-        // console.log("newResults",this.newResults);
+        // console.log("newResults",this.newResults); //
     
 
       } catch (error) {
