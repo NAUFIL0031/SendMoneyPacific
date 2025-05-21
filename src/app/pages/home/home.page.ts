@@ -14,7 +14,7 @@ declare let cordova: any; // Declare Cordova globally
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  standalone: true,
+  standalone: true, 
   imports: [IonicModule, CommonModule]
 })
 export class HomePage implements OnInit {
@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
 
   destination:any[] = [];
   operators: any[] = [];
-  selectedCountryCode = 'au'; // default
+  selectedCountryCode = ''; // default
   selectedSenderCode: string = '';   // For AU/NZ
   selectedReceiverCode: string = ''; // For receiver countries
   title :any;
@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
   Image:any;
   
  
-
+ 
   constructor( private router: Router, private location: Location, private http: HttpClient, private platform: Platform) {}
 
   ngOnInit() {
@@ -100,13 +100,13 @@ export class HomePage implements OnInit {
     this.operators = [];
     cordova.plugin.http.post(
       `${this.BASE_API}/getInitialData`,
-      requestData,
+      requestData, 
       headers,
       (response:any) => {
         try{
 
           //data
-          const data = JSON.parse(response.data);
+          const data = JSON.parse(response.data);   
           console.log('initial data:',data);
           //destination
           this.destination = data.destination;
