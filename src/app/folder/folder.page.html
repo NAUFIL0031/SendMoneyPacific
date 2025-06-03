@@ -13,13 +13,13 @@
       <ion-row class="ion-justify-content-around">
         <ion-text><Strong>From </Strong></ion-text>
         <ion-col size="4" class="col">
-          <img [src]="countryImg" class="main-img">
-          <p>{{ countryNameFrom }}</p>
+          <img [src]="SendercountryFlag" alt="{{senderFlag}}" class="main-img">
+          <p>{{ countryNameFrom }} </p>
         </ion-col>
 
         <ion-text>To</ion-text>
         <ion-col size="4" class="col">
-          <img [src]="countryFlag" class="main-img">
+          <img [src]="countryFlag" alt="{{receiverFlag}}"  class="main-img">
           <p>{{ countryNameTo }}</p>
         </ion-col>
       </ion-row>
@@ -27,9 +27,7 @@
 
     <!-- select amount  -->
     <ion-select [(ngModel)]="selectedAmount" (click)="getresult()">
-      <!-- <ion-select-option>200</ion-select-option> -->
       <ion-select-option *ngFor="let amt of amount" [value]="amt">{{amt}}</ion-select-option>
-      <!-- <ion-select-option *ngFor="let amt of amount" [value]="amt">{{amt}}</ion-select-option> -->
     </ion-select>
   
     <ion-button class="filter" shape="round"size="small" (click)="moreFilters()">More Filters</ion-button>
@@ -58,6 +56,23 @@
 
         </ion-row>
       </ion-grid>
+
+      
+
+
+
+     <ion-row class="ion-justify-content-start padding">
+       
+       <ion-img *ngIf = "!isGroup" src="./assets/images/Group-green.png" (click)="GroupPng()" class="dataImg"></ion-img>
+       <ion-img *ngIf = "isGroup" src="./assets/images/Group.png" (click)="GroupPng()" class="dataImg"></ion-img>
+  
+       <ion-img *ngIf = "!isVector" src="./assets/img/Vector-green.png" (click)="Vector()" class="dataImg"></ion-img>
+       <ion-img *ngIf = "isVector" src="./assets/images/Vector.png" (click)="Vector()" class="dataImg"></ion-img>
+
+     </ion-row>
+       
+      
+      <img  class="data-img">
     </div>
 
   <div *ngIf="isCheapestSelected" id="cheapest">
@@ -78,7 +93,7 @@
         </ion-item>
       </ion-list>
     </ion-card>
-     -->/
+     -->
 
      <ion-card *ngFor="let res of results">
       <ion-list>
@@ -95,9 +110,10 @@
         <ion-item lines="none">
           <ion-label>
             Under 1 hour | Account to account <span>Transfer Details</span>
+            <strong>exchange_margin:</strong>{{res.exchange_margin}};
           </ion-label>
           <ion-label>
-            <ion-button class="site">Go to site</ion-button>
+            <ion-button class="site" >Go to site</ion-button>
           </ion-label>
         </ion-item>
       </ion-list>
@@ -183,9 +199,9 @@
     </ion-card>
   </div>
     
-
-<ion-button class="more-match" expand="full" >
-  <ion-label>More Matches</ion-label>
-</ion-button>
-    
 </ion-content>
+<ion-footer>
+  <ion-button class="more-match" expand="full" >
+    <ion-label>More Matches</ion-label>
+  </ion-button>
+</ion-footer>

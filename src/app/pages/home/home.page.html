@@ -16,7 +16,7 @@
          <!-- conutry Aus -->
           
         <ion-col size="3" class="main-img"
-          (click)="selectCountry('Australia','Australia', './assets/Country/au.svg')"
+          (click)="selectCountry('au','Australia', './assets/Country/au.svg')"
           [ngClass]="{
             'active': selectedSenderCode === 'au',
             'inactive': selectedSenderCode && selectedSenderCode !== 'au'
@@ -28,7 +28,7 @@
          <!-- conutry Nz  -->
 
         <ion-col size="3" class="main-img"
-          (click)="selectCountry('New Zealand','New Zealand', './assets/Country/nz.svg')"
+          (click)="selectCountry('nz','New Zealand', './assets/Country/nz.svg')"
           [ngClass]="{
             'active': selectedSenderCode === 'nz',
             'inactive': selectedSenderCode && selectedSenderCode !== 'nz'
@@ -45,18 +45,16 @@
 
     <div class="contry">
 
-      <ion-grid class="content" >
-
-        <ion-label class="content-label">Select receiver country</ion-label>
-
-        <ion-row>
-          <ion-col size="3" *ngFor="let dest of destination"
-             class="destination"
-              (click)="selectCountry(dest.code, dest.title, getImageUrl(dest.flag))">
-              <img [src]="getImageUrl(dest.flag)" alt="{{ dest.title }}" class="flags" />
-              <label class="Name"><span>{{ dest.title }}</span></label>
-          </ion-col>
-        </ion-row>
+      <ion-grid class="content">
+  <ion-label class="content-label">Select receiver country</ion-label>
+  <ion-row>
+    <ion-col size="3" *ngFor="let dest of destination" class="destination"
+      (click)="selectReceiverCountry(dest.id, dest.title, getImageUrl(dest.flag))">
+      <img [src]="getImageUrl(dest.flag)" alt="{{ dest.title }}" class="flags" />
+      <label class="Name"><span>{{ dest.title }}</span></label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
        
         
@@ -75,7 +73,7 @@
           <ion-col offset-md="2"><img src="../../../assets/img/world-bank.png" class="support"></ion-col>
           <ion-col offset-md="2"><img src="../../../assets/img/culturalpluse.png" class="support"></ion-col>
         </ion-row>
-      </ion-grid>
+      <!-- </ion-grid> -->
     </div>
   </div> 
 </ion-content>   
