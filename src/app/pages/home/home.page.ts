@@ -29,9 +29,13 @@ selectedSenderFlag = '';
 selectedReceiverTitle = '';
 selectedReceiverFlag = '';
 selectedOperators: any[] = [];
+selectedtransferSpeed:any[]= []
+selectedtransferMethods:any[]=[];
 
   destination:any[] = [];
   operators: any[] = [];
+  transferSpeed: any[]= [];
+  transferMethods:any[] =[];
   // selectedCountryCode = ''; // default
   selectedSenderCode: string = '';   // For AU/NZ
   selectedReceiverCode: string = ''; // For receiver countries
@@ -234,7 +238,13 @@ console.log("select sender Country : ",this.selectedSenderCode,this.selectedRece
 
         this.operators = data.operators;
         console.log("Operator Data:",this.operators);
-        
+
+        this.transferSpeed = data.transferSpeed;
+        console.log("transferSpeed Data : ",this.transferSpeed);
+
+        this.transferMethods = data.transferMethods;
+        console.log("transferMethods Data : ",this.transferMethods);
+
       } catch (error) {
         console.error('Error parsing response:', error);
       }
@@ -257,9 +267,17 @@ selectReceiverCountry(id: string, title: string, flagUrl: string) {
   this.selectedReceiverTitle = title;
   this.selectedReceiverFlag = flagUrl;
 
-  console.log("Selected reciver country  :",this.selectedReceiverTitle,this.selectedReceiverFlag);
+  console.log("Selected reciver country  :",this.selectedReceiverTitle);
 
-const matchedDestination = this.destination;
+  const matchedDestination = this.destination;
+
+   const transferSpeedId = this.transferSpeed;
+    console.log("transferSpeedId : ",transferSpeedId);
+    const transferSpeedTitle = this.transferSpeed;
+    console.log("transferSpeedTitle :",transferSpeedTitle);
+
+ 
+
 
 // console.log("selectedReceiverCode :",this.selectedReceiverTitle); //
 
@@ -273,9 +291,22 @@ const matchedDestination = this.destination;
     console.log("destination title :", destinationTitle);
 
 
+   
+
+    
+
     // Filter operators that belong to the matched destination
-    this.selectedOperators = this.destination.filter(op => op.id === id || op.id === destinationId);
+    // this.selectedOperators = this.destination.filter(op => op.id === id || op.id === destinationId);
+    this.selectedOperators = this.destination;
     console.log("Operator id matched : ",this.selectedOperators);
+
+    this.selectedtransferSpeed = this.transferSpeed;
+    console.log("transferSpeed id matched : ",this.selectedtransferSpeed);
+
+    this.selectedtransferMethods = this.transferMethods;
+    console.log("transferMethods id :",this.transferMethods)
+
+
     
 
     if (this.selectedOperators.length === 0) {
@@ -303,7 +334,10 @@ getresult() {
       receiverTitle: this.selectedReceiverTitle,
       receiverFlag: this.selectedReceiverFlag,
 
-      destination: JSON.stringify(this.selectedOperators)
+      destination : JSON.stringify(this.selectedOperators),
+      transferSpeed : JSON.stringify(this.selectedtransferSpeed),
+      transferMethods : JSON.stringify(this.transferMethods),
+      
     }
   });
 }

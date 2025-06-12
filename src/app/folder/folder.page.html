@@ -63,8 +63,8 @@
 
      <ion-row class="ion-justify-content-start padding">
        
-       <ion-img *ngIf = "!isGroup" src="./assets/images/Group-green.png" (click)="GroupPng()" class="dataImg"></ion-img>
-       <ion-img *ngIf = "isGroup" src="./assets/images/Group.png" (click)="GroupPng()" class="dataImg"></ion-img>
+       <ion-img *ngIf="!isGroup" src="./assets/images/Group-green.png" (click)="GroupPng()" class="dataImg"></ion-img>
+       <ion-img *ngIf="isGroup" src="./assets/images/Group.png" (click)="Vector()" class="dataImg"> </ion-img>
   
        <ion-img *ngIf = "!isVector" src="./assets/img/Vector-green.png" (click)="Vector()" class="dataImg"></ion-img>
        <ion-img *ngIf = "isVector" src="./assets/images/Vector.png" (click)="Vector()" class="dataImg"></ion-img>
@@ -77,120 +77,30 @@
 
   <div *ngIf="isCheapestSelected" id="cheapest">
 
-    <!-- <img src="../../assets/images/Group.png" class="card-img">
-    <img src="../../assets/images/Vector.png" class="card-img"> -->
-    <!-- <ion-card>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-label> {{received || '....'}}<br> <span> {{currency || '....'}}</span></ion-label>
-         <img src="../../assets/img/Vector-green.png" class="card-img">
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>Under 1 hours | Account to account <span>Transfer Details</span></ion-label>
-          <ion-label>
-            <ion-button class="site">Go to site</ion-button>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card>
-     -->
-
-     <ion-card *ngFor="let res of results">
+  <!-- CHEAPEST - !isVector -->
+  <div *ngIf="!isVector">
+    <ion-card *ngFor="let res of results">
       <ion-list>
         <ion-item lines="none">
           <ion-label>
-            <strong>Received:</strong> {{ res.received }} <br>
-            <strong>Currency:</strong> {{ res.currency }}
+            <strong>{{ res.received }} {{ res.currency }}</strong><br>
+            <strong><p style="font-size: 5px;">Total Received (NZD)</p></strong>
           </ion-label>
           <ion-label>
-            <img [src]="'https://test.sendmoneypacific.org/wp-content/uploads/logos/' + res.operatorsImage " />
+            <img [src]="'https://test.sendmoneypacific.org/wp-content/uploads/logos/' + res.operatorsimage" />
           </ion-label>
-        
         </ion-item>
         <ion-item lines="none">
           <ion-label>
-            Under 1 hour | Account to account <span>Transfer Details</span>
-            <strong>exchange_margin:</strong>{{res.exchange_margin}};
+            <strong>{{res.transferSpeedTitle}}</strong> | {{res.SendMethod}} to {{res.ReceivedMethod}}<br>
+            <strong><p style="font-size: 5px;">Transfer Details</p></strong>
+            <strong>{{res.fee}} ({{ res.currency }})</strong>
+            <p>Send Fee ({{ res.currency }})</p>
+            <strong>{{res.cost}}</strong>
+            <p>Total Cost ({{ res.currency }})</p>
+            <strong>{{res.percent}}%</strong>
+            <p>Total Percent</p>
           </ion-label>
-          <ion-label>
-            <ion-button class="site" >Go to site</ion-button>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card>
-    <!-- <ion-card>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
-          <img src="../../assets/img/Vector-green.png" class="card-img">
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>Under 1 hours | online to account<span>Transfer Details</span></ion-label>
-          <ion-label>
-            <ion-button  class="site">Go to site</ion-button>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card> -->
-
-    <!-- <ion-card>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
-          <img src="../../assets/img/Vector-green.png" class="card-img">
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>1-3 weekdays| Credit card to cash <span>Transfer Details</span></ion-label>
-          <ion-label>
-            <ion-button  class="site">Go to site</ion-button>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card> -->
-
-  </div>
-
-<!-- fastest -->
-
-  <div *ngIf="!isCheapestSelected" id="fastest">
-    <ion-card>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-label>495.00NZD <span>total Received (NZD)</span></ion-label>
-          <ion-label class="card-img">img</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>Within Minutes| Online to mobile <span>Transfer Details</span></ion-label>
-          <ion-label>
-            <ion-button  class="site">Go to site</ion-button>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card>
-    
-    <ion-card>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
-          <ion-label class="card-img">img</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>Under 1 hours | online to account<span>Transfer Details</span></ion-label>
-          <ion-label>
-            <ion-button class="site">Go to site</ion-button>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card>
-
-    <ion-card>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-label>500.00NZD <span>total Received (NZD)</span></ion-label>
-          <ion-label class="card-img">img</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>1-3 weekdays| Credit card to cash <span>Transfer Details</span></ion-label>
           <ion-label>
             <ion-button class="site">Go to site</ion-button>
           </ion-label>
@@ -198,10 +108,102 @@
       </ion-list>
     </ion-card>
   </div>
+
+  <!-- CHEAPEST - isVector -->
+  <div *ngIf="isVector">
+    <ion-card *ngFor="let res of results">
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>{{ res.received }} {{ res.currency }}</strong><br>
+            <strong><p style="font-size: 5px;">Total Received (NZD)</p></strong>
+          </ion-label>
+          <ion-label>
+            <img [src]="'https://test.sendmoneypacific.org/wp-content/uploads/logos/' + res.operatorsimage" />
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>{{res.transferSpeedTitle}}</strong> | {{res.SendMethod}} to {{res.ReceivedMethod}}<br>
+            <strong><p style="font-size: 5px;">Transfer Details</p></strong>
+          </ion-label>
+          <ion-label>
+            <ion-button class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+
+</div>
+
+<!-- FASTEST section !isVector -->
+<div *ngIf="!isCheapestSelected" id="fastest">
+  <div *ngIf="!isVector">
+    <ion-card *ngFor="let res of results">
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>{{ res.received }} {{ res.currency }}</strong><br>
+            <strong><p style="font-size: 5px;">Total Received ({{ res.currency }})</p></strong>
+          </ion-label>
+          <ion-label>
+            <img [src]="'https://test.sendmoneypacific.org/wp-content/uploads/logos/' + res.operatorsimage" />
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>{{res.transferSpeedTitle}}</strong> | {{res.SendMethod}} to {{res.ReceivedMethod}}<br>
+            <strong><p style="font-size: 5px;">Transfer Details</p></strong>
+            <strong>{{res.fee}} ({{ res.currency }})</strong>
+            <p>Send Fee ({{ res.currency }})</p>
+            <strong>{{res.cost}}</strong>
+            <p>Total Cost ({{ res.currency }})</p>
+            <strong>{{res.percent}}%</strong>
+            <p>Total Percent</p>
+          </ion-label>
+          <ion-label>
+            <ion-button class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+
+  <!-- fastest section is vector -->
+
+   <div *ngIf="isVector">
+    <ion-card *ngFor="let res of results">
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>{{ res.received }} {{ res.currency }}</strong><br>
+            <strong><p style="font-size: 5px;">Total Received (NZD)</p></strong>
+          </ion-label>
+          <ion-label>
+            <img [src]="'https://test.sendmoneypacific.org/wp-content/uploads/logos/' + res.operatorsimage" />
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            <strong>{{res.transferSpeedTitle}}</strong> | {{res.SendMethod}} to {{res.ReceivedMethod}}<br>
+            <strong><p style="font-size: 5px;">Transfer Details</p></strong>
+          </ion-label>
+          <ion-label>
+            <ion-button class="site">Go to site</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+
+</div>
+
+
     
 </ion-content>
 <ion-footer>
-  <ion-button class="more-match" expand="full" >
+  <ion-button class="more-match" expand="full" (click)="getresult()">
     <ion-label>More Matches</ion-label>
   </ion-button>
 </ion-footer>

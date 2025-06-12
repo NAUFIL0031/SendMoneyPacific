@@ -43,7 +43,7 @@ export class FolderPage implements OnInit {
   opt: any;
   // operators111 :any;
   SendercountryFlag:any=";"
- selectedCountryCode:any = "";
+  selectedCountryCode:any = "";
   senderCode:any ="";
   receiverCode :any = "";
   senderTitle: any="";
@@ -75,7 +75,11 @@ export class FolderPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
+      this.transferSpeed = JSON.parse(params["transferSpeed"]);
+      this.transferMethods = JSON.parse(params["transferMethods"]);
       
+      
+
       // this.country_from = localStorage.getItem('selectedSenderCode') ||'';
       // this.countryNameFrom = JSON.stringify(localStorage.getItem('selectedCountryCode') ||'');
       // console.log("country_from",this.countryNameFrom)//
@@ -160,14 +164,25 @@ id:any ;
 newResults : any;
 idOptData:any;
 optData :any;
+transferSpeed:any;
+tsData :any;
+transferMethods:any;
+destination:any;
+orderby:any;
 
 //result API 
  getOperatorImage(id:string){
-  // console.log("id :",id);
-  // console.log(this.operators);
 
-  // return this.operators.find(( op:any ) => op.id === id).image 
+  // return this.operators.find(( op:any ) => op.catId === id ).image ;
  }
+
+transferSpeedtitle(id : string){
+  return this.transferSpeed.find(( op:any ) => op.weightage === id ).title;
+}
+
+getTransferMethods( id:string){
+  return this.transferMethods.find(( op:any ) => op.id === id).title;
+}
 
 //  getOperatorWeb(id:string){
 //   return this.operators.find((op:any) => op.id === id ).website
@@ -182,11 +197,11 @@ getresult() {
 
   
   const params = {
-    // country_from: localStorage.getItem('countryCode') || '', 
+    
     countryNameFrom: localStorage.getItem('senderCode') || '', 
     countryNameTo : localStorage.getItem('receiverCode') || '', // destination country
     amount: this.selectedAmount,
-    // amount: this.Selectedamount,
+    orderby:this.orderby
   };
   
   this.results = [];
@@ -217,22 +232,35 @@ getresult() {
             received: item.received,
             currency: item.currency,
             exchange_margin: item.exchange_margin,
+            fee : item.fee,
+            cost : item.cost,
+            percent : item.percent,
             catId : item.catid,
             catTitle : item.title,
+            receive_method: item.receive_method,//
             operatorId: this.optData?.id || '',
             operatorTitle: this.optData?.title || '',
-            operatorsImage: this.getOperatorImage(item.catid),
+            operatorsimage: this.getOperatorImage(item.catid),
+            transferSpeedTitle : this.transferSpeedtitle(item.speed),
+            transferSpeedspeed : item.speed,
+            transferSpeedId : item.id,
+
+            SendMethod : this.getTransferMethods(item.send_method),
+            ReceivedMethod : this.getTransferMethods(item.receive_method),
+
+            // transferSpeedweightage : item.weightage,
             // operatrosWebsite : this.getOperatorWeb(item.catid),
           }); 
-       
 
-          // console.log("Final Result:",this.results);
-          // this.operators.forEach((item: any) => {
-          //   const optData = this.operators[item.id] || {};
-          //   console.log("newOptData :",optData);
-          //   const idOptData = optData.id;
-          //   console.log("idOptData :",idOptData);
-          // })
+
+
+        //   console.log("Final Result:",this.results);
+        //   this.operators.forEach((item: any) => {
+        //     const optData = this.operators[item.id] || {};
+        //     console.log("newOptData :",optData);
+        //     const idOptData = optData.id;
+        //     console.log("idOptData :",idOptData);
+        //   })
 
         });
         
@@ -251,19 +279,19 @@ getresult() {
 }
 
 
-isVector:boolean =false;
-isGroup:boolean = false;
+isVector : boolean = false;
+isGroup : boolean = false;
 
 Vector(){
   this.isVector = false;
   this.isGroup = false; // turn off Group
-
+  this.getresult();
 }
-GroupPng(){
 
+
+GroupPng(){
   this.isGroup = true;
   this.isVector = true;
-}
 
 }
-
+}
