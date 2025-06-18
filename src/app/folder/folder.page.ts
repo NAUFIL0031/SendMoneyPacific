@@ -77,6 +77,7 @@ export class FolderPage implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.transferSpeed = JSON.parse(params["transferSpeed"]);
       this.transferMethods = JSON.parse(params["transferMethods"]);
+      this.operators = JSON.parse(params["operators"]);
       
       
 
@@ -159,7 +160,7 @@ this.countryFlag = localStorage.getItem('selectedCountryFlag') || '';
 amount: number[] = [200,500];
 selectedAmount: number[] = [200];
 results: any = [];
-catId:any;
+catid:any;
 id:any ;
 newResults : any;
 idOptData:any;
@@ -171,10 +172,10 @@ destination:any;
 orderby:any;
 
 //result API 
- getOperatorImage(id:string){
-
-  // return this.operators.find(( op:any ) => op.catId === id ).image ;
- }
+//  getOperatorImage(catid : string){
+//   console.log("Catid: ",this.catid);
+//   return this.operators.find((op:any ) => op.id === catid ).image ;
+//  }
 
 transferSpeedtitle(id : string){
   return this.transferSpeed.find(( op:any ) => op.weightage === id ).title;
@@ -235,12 +236,12 @@ getresult() {
             fee : item.fee,
             cost : item.cost,
             percent : item.percent,
-            catId : item.catid,
+            catid : item.catid,
             catTitle : item.title,
             receive_method: item.receive_method,//
             operatorId: this.optData?.id || '',
             operatorTitle: this.optData?.title || '',
-            operatorsimage: this.getOperatorImage(item.catid),
+            // operatorsimage: this.getOperatorImage(item.catid),
             transferSpeedTitle : this.transferSpeedtitle(item.speed),
             transferSpeedspeed : item.speed,
             transferSpeedId : item.id,
@@ -248,7 +249,7 @@ getresult() {
             SendMethod : this.getTransferMethods(item.send_method),
             ReceivedMethod : this.getTransferMethods(item.receive_method),
 
-            // transferSpeedweightage : item.weightage,
+            transferSpeedweightage : item.weightage,
             // operatrosWebsite : this.getOperatorWeb(item.catid),
           }); 
 

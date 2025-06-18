@@ -42,7 +42,7 @@ selectedtransferMethods:any[]=[];
   title :any;
   id:any;
   Image:any;
-  
+  catid:any;
  
  
   constructor( private router: Router, private location: Location, private http: HttpClient, private platform: Platform) {
@@ -296,9 +296,9 @@ selectReceiverCountry(id: string, title: string, flagUrl: string) {
     
 
     // Filter operators that belong to the matched destination
-    // this.selectedOperators = this.destination.filter(op => op.id === id || op.id === destinationId);
-    this.selectedOperators = this.destination;
-    console.log("Operator id matched : ",this.selectedOperators);
+    this.selectedOperators = this.destination.filter(op => op.id === id || op.id === destinationId);
+    // this.selectedOperators = this.destination;
+    console.log("Operator id matched with Destination : ",this.selectedOperators);
 
     this.selectedtransferSpeed = this.transferSpeed;
     console.log("transferSpeed id matched : ",this.selectedtransferSpeed);
@@ -337,6 +337,7 @@ getresult() {
       destination : JSON.stringify(this.selectedOperators),
       transferSpeed : JSON.stringify(this.selectedtransferSpeed),
       transferMethods : JSON.stringify(this.transferMethods),
+      operators : JSON.stringify(this.selectedOperators),
       
     }
   });
